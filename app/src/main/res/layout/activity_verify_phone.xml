@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".signup.VerifyPhoneActivity" android:orientation="vertical"
+              android:background="@android:color/background_light" android:padding="8dp"
+              android:gravity="center_horizontal">
+
+    <TextView
+            android:text="@string/txt_verify_your_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView2"
+            android:gravity="center_horizontal" android:paddingTop="16dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textColor="@color/secondaryColor" android:paddingBottom="16dp"/>
+    <TextView
+            android:text="@string/txt_will_send_sms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView" android:padding="16dp"
+            android:textAlignment="center"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:paddingLeft="36dp" android:paddingRight="36dp">
+        <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/countryNames"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:entries="@array/countryNames" android:textAlignment="center"
+        />
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="+"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/textView3"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" android:paddingTop="6dp"
+                        android:textColor="@color/labelPlus"/>
+                <EditText
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/countryCode" android:text="255" android:paddingLeft="16dp"
+                        android:textAlignment="center" android:layout_width="64dp"/>
+            </FrameLayout>
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:ems="10"
+                    android:id="@+id/phoneNumber" android:hint="@string/txt_hint_phone" android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar" android:visibility="invisible" android:indeterminate="true"/>
+    <Button
+            android:text="@string/txt_btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/btnNext"
+            android:background="@color/secondaryColor" android:textColor="@color/secondaryTextColor"
+            android:textStyle="bold" android:textSize="18sp" android:layout_marginTop="16dp"/>
+</LinearLayout>

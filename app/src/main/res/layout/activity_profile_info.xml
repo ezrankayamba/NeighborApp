@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".signup.ProfileInfoActivity" android:orientation="vertical"
+              android:background="@color/secondaryTextColor" android:padding="8dp"
+              android:gravity="center_horizontal">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:id="@+id/mainLayout" android:gravity="center_horizontal">
+        <TextView
+                android:text="@string/txt_profile_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView2"
+                android:gravity="center_horizontal" android:paddingTop="16dp"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
+                android:textColor="@color/secondaryColor" android:paddingBottom="16dp"/>
+        <TextView
+                android:text="@string/txt_provide_name_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/textView" android:padding="16dp"
+                android:textAlignment="center"/>
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:paddingLeft="36dp" android:paddingRight="36dp"
+                android:gravity="center" android:layout_marginBottom="16dp">
+            <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp" app:srcCompat="@drawable/ic_camera_alt_white_24dp"
+                    android:id="@+id/btnProfilePic" android:background="@drawable/profile_pic_circle"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"/>
+            <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName"
+                    android:ems="10"
+                    android:id="@+id/userName" android:layout_weight="1" android:hint="@string/txt_hint_type_your_name"
+                    android:layout_marginLeft="8dp"/>
+            <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp" app:srcCompat="@drawable/ic_sentiment_satisfied_black_24dp"
+                    android:id="@+id/imageView4" android:layout_weight="1"/>
+        </LinearLayout>
+        <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar" android:visibility="invisible" android:indeterminate="true"/>
+        <Button
+                android:text="@string/txt_btn_next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/btnNext"
+                android:background="@color/secondaryColor" android:textColor="@color/secondaryTextColor"
+                android:textStyle="bold" android:textSize="18sp" android:layout_marginTop="16dp"/>
+    </LinearLayout>
+</LinearLayout>

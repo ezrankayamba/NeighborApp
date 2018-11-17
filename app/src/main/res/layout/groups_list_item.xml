@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+    <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+        <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_group_members"
+                android:layout_gravity="center_vertical"/>
+    </FrameLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_height="match_parent" android:layout_weight="1" android:gravity="center_vertical"
+            android:background="@drawable/lv_divider"
+            android:layout_width="0dp" android:layout_marginLeft="8dp" android:layout_marginRight="8dp">
+        <TextView
+                android:text="Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/name"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"/>
+        <TextView
+                android:text="20 neighbors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/desc"/>
+    </LinearLayout>
+</LinearLayout>

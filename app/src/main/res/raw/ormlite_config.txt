@@ -1,0 +1,34 @@
+#
+# generated on 2018/10/28 05:28:53
+#
+# --table-start--
+dataClass=tz.co.nezatech.neighborapp.db.model.Member
+tableName=tbl_member
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=name
+# --field-end--
+# --field-start--
+fieldName=recordDate
+columnName=record_date
+# --field-end--
+# --field-start--
+fieldName=msisdn
+unique=true
+indexName=tbl_member_msisdn_idx
+# --field-end--
+# --field-start--
+fieldName=uuid
+unique=true
+indexName=tbl_member_uuid_idx
+# --field-end--
+# --field-start--
+fieldName=status
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################

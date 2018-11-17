@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              tools:context=".signup.VerifyPhoneActivity" android:orientation="vertical"
+              android:background="@android:color/background_light" android:padding="8dp"
+              android:id="@+id/mFullscreenContent">
+
+    <TextView
+            android:text="@string/txt_welcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView2" android:layout_weight="1"
+            android:gravity="center_horizontal" android:paddingTop="16dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textColor="@color/secondaryDarkColor" android:textStyle="bold"/>
+    <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" app:srcCompat="@drawable/img_neighbor"
+            android:id="@+id/imageView" android:layout_weight="2"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/mContentControls">
+        <TextView
+                android:text="@string/txt_terms_and_conditions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/mTermsCond" android:layout_weight="1"
+                android:paddingBottom="16dp" android:gravity="center_horizontal"/>
+        <Button android:id="@+id/btnAcceptTerms"
+                style="?metaButtonBarButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/txt_btn_accept_tnc" android:background="@color/secondaryDarkColor"
+                android:textColor="@color/primaryTextColor" android:textSize="18sp"/>
+    </LinearLayout>
+
+</LinearLayout>

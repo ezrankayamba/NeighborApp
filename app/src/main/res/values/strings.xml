@@ -1,0 +1,130 @@
+<resources>
+    <string name="app_name">NeighborApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact based on your message
+        history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value"/>
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="txt_enter_phone_number">Enter phone number</string>
+    <string name="txt_enter_otp">Enter OTP Received from SMS</string>
+    <string name="txt_enter_your_name">Enter your name</string>
+
+    <string name="txt_btn_accept_tnc">Agree and Continue</string>
+    <string name="txt_welcome">Welcome to NeighborApp</string>
+    <string name="txt_terms_and_conditions">Tap \'Agree and continue\' to accept the NeighborApp Terms of Service and
+        Privacy Policy
+    </string>
+    <string name="txt_verify_your_phone">Verify your phone number</string>
+    <string name="txt_will_send_sms">NeighborApp will send an SMS message (carrier charges may apply) to verify your
+        phone number. Enter your country code and phone number:
+    </string>
+    <string name="txt_btn_next">Next</string>
+    <string name="txt_hint_phone">phone number</string>
+    <string name="txt_wait_verify_code">Waiting to automatically detect an SMS sent to %s. Wrong number?</string>
+    <string name="txt_enter_code">Enter 6-digit code</string>
+    <string name="txt_provide_name_photo">Please provide your name and an optional profile photo</string>
+    <string name="txt_profile_info">Profile info</string>
+    <string name="txt_hint_type_your_name">Type your name here</string>
+    <string name="re_register">Re-Register</string>
+    <string name="txt_welcome_home">Welcome! Here you can easily reach your neighbors especially in emergencies</string>
+    <string name="profile_photo">Profile photo</string>
+    <string name="my_profile">My Profile</string>
+    <string name="txt_empty_groups">Wait while fetching your groups</string>
+    <string name="txt_empty_groups_nogrps">There are no groups yet. Create new groups from right menu</string>
+    <string-array name="countryNames">
+        <item>Tanzania</item>
+        <item>Kenya</item>
+        <item>Uganda</item>
+    </string-array>
+    <string-array name="countryCodes">
+        <item>255</item>
+        <item>254</item>
+        <item>256</item>
+    </string-array>
+    <string name="title_activity_new_group">New group</string>
+    <string name="new_group">New group</string>
+    <string name="txt_add_members">Add neighbors</string>
+    <string name="txt_no_contact_filter_match">No contact match your search term</string>
+    <string name="txt_members_label">Members:</string>
+    <string name="txt_sub_title_add_name">Add name</string>
+    <string name="title_activity_group_profile">GroupProfileActivity</string>
+    <string name="account_type">nezatech.co.tz</string>
+    <string name="authority">tz.co.nezatech.neighborapp.sync</string>
+    <string name="title_activity_manage_group">ManageGroupActivity</string>
+    <string name="title_activity_in_call">Panic Alert</string>
+    <string name="id_connection_service">tz.co.nezatech.neighborconnectionservice</string>
+    <string name="neighbor_in_panic_mode">Your neighbor is in panic mode!</string>
+    <string name="neighbor_in_panic_mode_action">Your neighbor is in panic mode! Kindly visit and offer due help. However be very cautious.</string>
+    <string name="alert_panic_text">All neighbors in all groups which you are member will receive this panic alert. Do you really want to send panic alert?</string>
+    <string name="send_alert_positive_text">Yes, send!</string>
+</resources>

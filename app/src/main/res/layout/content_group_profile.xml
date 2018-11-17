@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_group_profile"
+        tools:context=".group.GroupProfileActivity">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  tools:context=".group.GroupProfileActivity" android:orientation="vertical"
+                  android:background="@color/secondaryTextColor"
+                  android:gravity="center_horizontal">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/mainLayout" android:gravity="center_horizontal"
+                android:background="#FFFFFF" android:paddingLeft="8dp" android:paddingRight="8dp" android:paddingTop="8dp">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp" app:srcCompat="@drawable/ic_camera_alt_white_24dp"
+                        android:id="@+id/btnProfilePic" android:background="@drawable/profile_pic_circle"
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"/>
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPersonName"
+                        android:ems="10"
+                        android:id="@+id/groupName" android:layout_weight="1" android:hint="Type group name here..."
+                        android:layout_marginLeft="8dp"/>
+                <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp" app:srcCompat="@drawable/ic_sentiment_satisfied_black_24dp"
+                        android:id="@+id/imageView4"/>
+            </LinearLayout>
+            <ProgressBar
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/progressBar" android:visibility="invisible" android:indeterminate="true"/>
+
+        </LinearLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="36dp" android:background="#FFFFFF" android:paddingLeft="16dp"
+                            android:paddingRight="16dp">
+                        <TextView
+                                android:text="Provide neighbor group name"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content" android:id="@+id/textView8" android:layout_weight="1"
+                        />
+                    </LinearLayout>
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="32dp" android:background="#F2F2F2" android:paddingLeft="16dp"
+                            android:gravity="center_vertical">
+                        <TextView
+                                android:text="Members: 3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content" android:id="@+id/membersCountText"
+                                android:layout_weight="1"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <ImageButton
+                        android:text="@string/txt_btn_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:id="@+id/btnNext"
+                        android:background="@drawable/roundedbutton" android:textColor="@color/secondaryTextColor"
+                        android:textStyle="bold" android:textSize="18sp"
+                        app:srcCompat="@drawable/ic_check_white_24dp" android:padding="16dp"
+                        android:layout_gravity="right|center"
+                        android:layout_marginRight="16dp"/>
+
+            </FrameLayout>
+            <GridView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/selectedContactsGrid"
+                    android:background="#F2F2F2"
+                    android:columnWidth="72dp"
+                    android:numColumns="auto_fit"
+                    android:verticalSpacing="8dp"
+                    android:horizontalSpacing="4dp"
+                    android:stretchMode="columnWidth"
+                    android:gravity="center" android:paddingBottom="8dp">
+            </GridView>
+        </LinearLayout>
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/activity_in_call"
+        tools:context=".call.InCallActivity" android:orientation="vertical" android:padding="8dp">
+
+    <TextView
+            android:text="@string/neighbor_in_panic_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView10"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" android:gravity="center_horizontal"
+            android:background="@drawable/lv_divider" android:paddingBottom="32dp" android:paddingTop="8dp"
+            android:textColor="@color/panicTextColor"/>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/lv_divider" android:paddingTop="16dp" android:paddingBottom="16dp">
+
+        <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" android:padding="8dp">
+
+            <ImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/ic_person_round_full"
+                    android:layout_gravity="center_vertical" android:layout_marginRight="8dp"/>
+        </FrameLayout>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_height="match_parent" android:layout_weight="1" android:gravity="center_vertical"
+                android:paddingBottom="8dp" android:layout_width="match_parent">
+            <TextView
+                    android:text="Name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/name"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline" android:paddingBottom="4dp"/>
+            <TextView
+                    android:text="+255713123066"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:id="@+id/msisdn"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+            android:text="@string/neighbor_in_panic_mode_action"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView9"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" android:gravity="center_horizontal"
+            android:paddingBottom="8dp" android:paddingTop="32dp"/>
+</LinearLayout>

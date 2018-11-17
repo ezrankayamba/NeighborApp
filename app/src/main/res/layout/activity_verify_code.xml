@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".signup.VerifyCodeActivity" android:orientation="vertical" android:padding="16dp"
+        android:gravity="center_horizontal">
+    <TextView
+            android:text="Verify +255 719 169 800"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/verifyCodeTitle"
+            android:gravity="center_horizontal" android:paddingTop="16dp"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textColor="@color/secondaryColor" android:paddingBottom="16dp"/>
+    <TextView
+            android:text="@string/txt_wait_verify_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/waitText"
+            android:padding="16dp" android:textAlignment="center"/>
+    <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="--- ---"
+                android:id="@+id/verificationCodeTracher" android:textScaleX="4.2"
+                android:textColor="@color/labelPlus"/>
+        <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:id="@+id/verificationCode" android:textScaleX="2.1" android:maxLength="7"/>
+    </FrameLayout>
+    <TextView
+            android:text="@string/txt_enter_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/textView5" android:textAlignment="center"
+            android:padding="16dp"/>
+    <ProgressBar
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar" android:visibility="invisible" android:indeterminate="true"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:padding="16dp">
+        <ImageView
+                android:src="@drawable/ic_textsms_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/imageView2"/>
+        <TextView
+                android:text="Resend SMS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView6" android:layout_weight="1"
+                android:paddingLeft="8dp" android:paddingRight="8dp"/>
+        <TextView
+                android:text="1:02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:id="@+id/textView7"/>
+    </LinearLayout>
+    <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
+    <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:padding="16dp">
+        <ImageView
+                android:src="@drawable/ic_call_black_24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        <TextView
+                android:text="Call me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:paddingLeft="8dp" android:paddingRight="8dp"/>
+        <TextView
+                android:text="1:02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>
