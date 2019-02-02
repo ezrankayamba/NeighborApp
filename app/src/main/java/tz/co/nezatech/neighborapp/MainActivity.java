@@ -1,15 +1,19 @@
 package tz.co.nezatech.neighborapp;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String FETCH_SEND_PANIC_URL = ApiUtil.BASE_URL + "/panic";
     public static final String DATA_SELECTED_GROUP = "SelectedGroup";
     private static final String TAG = MainActivity.class.getSimpleName();
+    private static final int MY_PERMISSIONS_REQUEST_OUTGOING_CALLS = 100;
     private SensorManager mSensorManager;
     private Sensor mAccelerometer;
     private ShakeDetector mShakeDetector;
@@ -65,6 +70,26 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         fetchGroups();
+        permissionBgAlert();
+    }
+
+    private void permissionBgAlert() {
+        //android.permission.PROCESS_OUTGOING_CALLS
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.PROCESS_OUTGOING_CALLS)
+                != PackageManager.PERMISSION_GRANTED) {
+            // Permission is not granted
+            // Should we show an explanation?
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.PROCESS_OUTGOING_CALLS)) {
+                Log.d(TAG, "Show explanations");
+            } else {
+                // No explanation needed; request the permission
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.PROCESS_OUTGOING_CALLS},
+                        MY_PERMISSIONS_REQUEST_OUTGOING_CALLS);
+                Log.d(TAG, "Permissions granted");
+            }
+        }
     }
 
     boolean callLocked = false;
@@ -182,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
         mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
     }
 
+
     @Override
     public void onPause() {
         mSensorManager.unregisterListener(mShakeDetector);
@@ -190,6 +216,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateGroupList(Response response) {
         groups = response.getGroups();
+        if(groups==null){
+            groups=new ArrayList<>();
+        }
         init();
     }
 
@@ -371,5 +400,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 }

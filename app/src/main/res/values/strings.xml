@@ -61,7 +61,7 @@
         <item>3</item>
     </string-array>
 
-    <string-array name="multi_select_list_preference_default_value"/>
+    <string-array name="multi_select_list_preference_default_value" />
 
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
@@ -127,4 +127,11 @@
     <string name="neighbor_in_panic_mode_action">Your neighbor is in panic mode! Kindly visit and offer due help. However be very cautious.</string>
     <string name="alert_panic_text">All neighbors in all groups which you are member will receive this panic alert. Do you really want to send panic alert?</string>
     <string name="send_alert_positive_text">Yes, send!</string>
+
+    <string name="title_activity_panic_alert">Panic Alert</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="empty_text">Empty Text</string>
+    <string name="txt_name">Name</string>
+    <string name="number_of_neighbors"># of neighbors</string>
 </resources>

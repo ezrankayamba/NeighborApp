@@ -33,6 +33,7 @@ public class VerifyCodeActivity extends AppCompatActivity implements Common.OTPL
     public static final String DATA_TOKEN = "OTP_TOKEN";
     public static final int REQUEST_CODE_READ_SMS = 1101;
     public static final String DATA_MSISDN = "MSISDN";
+    private static final String TAG = VerifyCodeActivity.class.getSimpleName();
     private final String VALIDATE_OTP_URL = ApiUtil.BASE_URL + "/signup/verifyotp";
 
     @Override
@@ -139,15 +140,19 @@ public class VerifyCodeActivity extends AppCompatActivity implements Common.OTPL
 
     @Override
     public void onOTPReceived(String otp) {
+        Log.d(TAG, "SMS received: "+otp);
         final EditText et = findViewById(R.id.verificationCode);
         et.clearFocus();
         et.setText("");
         final Editable text = et.getText();
         char[] chars = otp.toCharArray();
         for (int i = 0; i < chars.length; i++) {
+            char aChar = chars[i];
+            Log.d(TAG, aChar+"");
             text.append(chars[i]);
         }
     }
+
 
     class ValidateOTPTask extends AsyncTask<Void, Void, Response> {
         ProgressBar progressBar;

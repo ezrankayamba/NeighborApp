@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "413383011982",
-    "firebase_url": "https://neighborapp-77799.firebaseio.com",
-    "project_id": "neighborapp-77799",
-    "storage_bucket": "neighborapp-77799.appspot.com"
+    "project_number": "265763539566",
+    "firebase_url": "https://neighborapp-732b9.firebaseio.com",
+    "project_id": "neighborapp-732b9",
+    "storage_bucket": "neighborapp-732b9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:413383011982:android:11446335c8741381",
+        "mobilesdk_app_id": "1:265763539566:android:11446335c8741381",
         "android_client_info": {
           "package_name": "tz.co.nezatech.neighborapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "413383011982-r3lo6gc9rmu44ob72jji8v30d1do1cdf.apps.googleusercontent.com",
+          "client_id": "265763539566-4q9o88rc34lg70b47eqcofp76aluvq60.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAKDxB0d6U4x3XVIXktgC4lfOF-kWu8zOk"
+          "current_key": "AIzaSyD6zxsimTTusEVSv-ekkL2rJPYu5TVirdk"
         }
       ],
       "services": {

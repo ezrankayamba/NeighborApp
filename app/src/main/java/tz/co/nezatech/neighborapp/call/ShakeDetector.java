@@ -32,7 +32,10 @@ public class ShakeDetector implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        //Log.d(TAG, "Share event");
+       handleTriggeredShake(event);
+    }
+
+    private synchronized void handleTriggeredShake(SensorEvent event) {
         if (mListener != null) {
             float x = event.values[0];
             float y = event.values[1];

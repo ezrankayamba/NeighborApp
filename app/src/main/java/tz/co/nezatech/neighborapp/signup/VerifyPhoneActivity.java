@@ -66,7 +66,7 @@ public class VerifyPhoneActivity extends AppCompatActivity {
                 String code = countryCode.getText().toString();
                 String phoneNumber = phoneNumberET.getText().toString();
 
-                if (ContextCompat.checkSelfPermission(VerifyPhoneActivity.this, Manifest.permission.WRITE_CALENDAR)
+                if (ContextCompat.checkSelfPermission(VerifyPhoneActivity.this, Manifest.permission.RECEIVE_SMS)
                         != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(VerifyPhoneActivity.this, new String[]{android.Manifest.permission.RECEIVE_SMS}, VerifyCodeActivity.REQUEST_CODE_READ_SMS);
                 } else {
