@@ -18,8 +18,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import com.google.gson.Gson;
+
 import org.json.JSONObject;
+
 import tz.co.nezatech.neighborapp.R;
 import tz.co.nezatech.neighborapp.sms.Common;
 import tz.co.nezatech.neighborapp.sms.SMSListener;
@@ -55,7 +58,7 @@ public class VerifyCodeActivity extends AppCompatActivity implements Common.OTPL
     }
 
     private void init() {
-        ActivityCompat.requestPermissions(VerifyCodeActivity.this, new String[]{android.Manifest.permission.RECEIVE_SMS}, REQUEST_CODE_READ_SMS);
+        // ActivityCompat.requestPermissions(VerifyCodeActivity.this, new String[]{android.Manifest.permission.RECEIVE_SMS}, REQUEST_CODE_READ_SMS);
 
         final String phoneNumber = getIntent().getExtras().getString(VerifyPhoneActivity.DATA_PHONE_NUMBER);
         final String countryCode = getIntent().getExtras().getString(VerifyPhoneActivity.DATA_COUNTRY_CODE);
@@ -93,8 +96,10 @@ public class VerifyCodeActivity extends AppCompatActivity implements Common.OTPL
         codeET.setInputType(InputType.TYPE_CLASS_NUMBER);
         codeET.setKeyListener(DigitsKeyListener.getInstance("0123456789 "));
         codeET.setSingleLine(true);
+        codeET.setFocusedByDefault(true);
 
         final EditText codeTracherET = findViewById(R.id.verificationCodeTracher);
+        codeTracherET.setEnabled(false);
         codeET.addTextChangedListener(new TextWatcher() {
             private static final char space = ' ';
             int len = 0;
@@ -131,8 +136,20 @@ public class VerifyCodeActivity extends AppCompatActivity implements Common.OTPL
                     text.delete(3, 4);
                 }
 
+                Log.d(TAG, "Size: " + str.trim().length());
+                if (!str.trim().contains(" ") && str.trim().length() == 6) {
+                    Log.d(TAG, "It is a paste");
+                    str = new StringBuilder(str).insert(3, " ").toString();
+                    codeET.setText(str);
+                }
+
                 if (str.length() == 7) {
-                    new ValidateOTPTask(phoneNumber, countryCode, str.replaceAll(" ", "")).execute();
+                    String otp = str.replaceAll(" ", "");
+                    if (otp.length() == 6) {
+                        new ValidateOTPTask(phoneNumber, countryCode, str.replaceAll(" ", "")).execute();
+                    } else {
+                        codeET.setText(str.trim().replaceAll(" ", ""));
+                    }
                 }
             }
         });
@@ -140,7 +157,7 @@ public class VerifyCodeActivity extends AppCompatActivity implements Common.OTPL
 
     @Override
     public void onOTPReceived(String otp) {
-        Log.d(TAG, "SMS received: "+otp);
+        Log.d(TAG, "SMS received: " + otp);
         final EditText et = findViewById(R.id.verificationCode);
         et.clearFocus();
         et.setText("");
@@ -148,7 +165,7 @@ public class VerifyCodeActivity extends AppCompatActivity implements Common.OTPL
         char[] chars = otp.toCharArray();
         for (int i = 0; i < chars.length; i++) {
             char aChar = chars[i];
-            Log.d(TAG, aChar+"");
+            Log.d(TAG, aChar + "");
             text.append(chars[i]);
         }
     }
@@ -198,7 +215,7 @@ public class VerifyCodeActivity extends AppCompatActivity implements Common.OTPL
                 String resp = conn.getResponseMessage();
                 Log.i("MSG", resp);
                 int statusCode = conn.getResponseCode();
-                if (statusCode != 200){
+                if (statusCode != 200) {
                     conn.disconnect();
                     return null;
                 }
@@ -226,7 +243,7 @@ public class VerifyCodeActivity extends AppCompatActivity implements Common.OTPL
                 intent.putExtra(VerifyCodeActivity.DATA_MSISDN, msisdn);
                 intent.putExtra(VerifyCodeActivity.DATA_TOKEN, otp);
                 startActivity(intent);
-            }else {
+            } else {
                 Snackbar.make(progressBar, response.getMessage(), Snackbar.LENGTH_LONG)
                         .setAction("ErrorResponse", null).show();
             }
