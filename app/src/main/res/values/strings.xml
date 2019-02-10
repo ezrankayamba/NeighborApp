@@ -134,4 +134,8 @@
     <string name="empty_text">Empty Text</string>
     <string name="txt_name">Name</string>
     <string name="number_of_neighbors"># of neighbors</string>
+    <string name="dialog_message">Are you sure you want to send a panic alert?</string>
+    <string name="dialog_title">Panic Alert</string>
+
+    <string name="title_activity_send_panic">Emergency Call</string>
 </resources>

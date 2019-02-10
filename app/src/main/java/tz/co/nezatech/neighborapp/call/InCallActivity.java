@@ -11,10 +11,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import tz.co.nezatech.neighborapp.R;
 import tz.co.nezatech.neighborapp.signup.VerifyCodeActivity;
 import tz.co.nezatech.neighborapp.signup.VerifyPhoneActivity;
@@ -22,6 +25,7 @@ import tz.co.nezatech.neighborapp.signup.VerifyPhoneActivity;
 public class InCallActivity extends AppCompatActivity {
 
     private static final int PERMISSIONS_REQUEST_UNLOCK_SCREEN_FOR_ALERTS = 100;
+    private static final String TAG=InCallActivity.class.getSimpleName();
 
     @RequiresApi(api = Build.VERSION_CODES.O_MR1)
     @Override
@@ -36,12 +40,17 @@ public class InCallActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                done("Acknowledged");
             }
         });
 
         init();
+    }
+
+    private void done(String msg){
+        Log.e(TAG, "Completed handling of received panic alert: " + msg);
+        //Toast.makeText(this,"Completed handling of received panic alert: " + msg, Toast.LENGTH_LONG);
+        this.finish();
     }
 
     private void init() {

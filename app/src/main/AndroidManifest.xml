@@ -4,15 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <!--uses-permission android:name="android.permission.RECEIVE_SMS" /-->
-    <!--uses-permission android:name="android.permission.READ_SMS" /-->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
-    <!--uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS"/-->
 
     <application
         android:allowBackup="true"
@@ -21,33 +16,41 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:finishOnTaskLaunch="true"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".SplashScreenActivity" android:theme="@style/SplashScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".call.SendPanicActivity"
+            android:finishOnTaskLaunch="true"
+            android:excludeFromRecents="true"
+            android:label="@string/title_activity_send_panic"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".MainActivity"
+            android:finishOnTaskLaunch="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
             android:name=".signup.VerifyPhoneActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".signup.WelcomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".signup.VerifyCodeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".signup.ProfileInfoActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".signup.ProfileInfoActivity" />
 
-        <!--receiver android:name=".sms.SMSListener">
+        <receiver android:name=".receiver.BootReceiver">
             <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
-        </receiver-->
+        </receiver>
 
         <activity
             android:name=".group.NewGroupActivity"
@@ -82,6 +85,7 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <service android:name=".service.ShakeService" />
 
         <activity
             android:name=".call.InCallActivity"
@@ -92,14 +96,7 @@
             android:showWhenLocked="true"
             android:taskAffinity=""
             android:theme="@style/AppTheme.NoActionBar"
-            android:turnScreenOn="true">
-
-        </activity>
-        <!--receiver android:name=".receiver.OutgoingCallReceiver">
-            <intent-filter android:priority="1">
-                <action android:name="android.intent.action.NEW_OUTGOING_CALL" />
-            </intent-filter>
-        </receiver-->
+            android:turnScreenOn="true" />
     </application>
 
 </manifest>

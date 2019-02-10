@@ -8,9 +8,10 @@ import android.util.Log;
 
 public class ShakeDetector implements SensorEventListener {
 
-    private static final float SHAKE_THRESHOLD_GRAVITY = 2.5F;//original 2.7
-    private static final int SHAKE_SLOP_TIME_MS = 500;
-    private static final int SHAKE_COUNT_RESET_TIME_MS = 3000;
+    public static final float SHAKE_THRESHOLD_GRAVITY = 2.5F;//original 2.7
+    public static final int SHAKE_SLOP_TIME_MS = 500;
+    public static final int SHAKE_COUNT_RESET_TIME_MS = 3000;
+    public static final int SHAKE_ATTEND_RESET_TIME_MS = 6000; //1 minute
 
     private OnShakeListener mListener;
     private long mShakeTimestamp;
@@ -35,18 +36,22 @@ public class ShakeDetector implements SensorEventListener {
        handleTriggeredShake(event);
     }
 
+    public static float gForce(SensorEvent event){
+        float x = event.values[0];
+        float y = event.values[1];
+        float z = event.values[2];
+
+        float gX = x / SensorManager.GRAVITY_EARTH;
+        float gY = y / SensorManager.GRAVITY_EARTH;
+        float gZ = z / SensorManager.GRAVITY_EARTH;
+
+        // gForce will be close to 1 when there is no movement.
+        return (float) Math.sqrt(gX * gX + gY * gY + gZ * gZ);
+    }
+
     private synchronized void handleTriggeredShake(SensorEvent event) {
         if (mListener != null) {
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
-
-            float gX = x / SensorManager.GRAVITY_EARTH;
-            float gY = y / SensorManager.GRAVITY_EARTH;
-            float gZ = z / SensorManager.GRAVITY_EARTH;
-
-            // gForce will be close to 1 when there is no movement.
-            float gForce = (float) Math.sqrt(gX * gX + gY * gY + gZ * gZ);
+            float gForce = gForce(event);
 
             if (gForce > SHAKE_THRESHOLD_GRAVITY) {
 

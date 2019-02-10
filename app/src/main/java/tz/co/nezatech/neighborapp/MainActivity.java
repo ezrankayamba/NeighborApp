@@ -1,39 +1,23 @@
 package tz.co.nezatech.neighborapp;
 
-import android.Manifest;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.telecom.TelecomManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.*;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
 import org.json.JSONObject;
-import tz.co.nezatech.neighborapp.adapter.GroupAdapter;
-import tz.co.nezatech.neighborapp.call.ShakeDetector;
-import tz.co.nezatech.neighborapp.group.ManageGroupActivity;
-import tz.co.nezatech.neighborapp.group.NewGroupActivity;
-import tz.co.nezatech.neighborapp.model.Group;
-import tz.co.nezatech.neighborapp.pref.UserPreference;
-import tz.co.nezatech.neighborapp.signup.ProfileInfoActivity;
-import tz.co.nezatech.neighborapp.signup.Response;
-import tz.co.nezatech.neighborapp.signup.WelcomeActivity;
-import tz.co.nezatech.neighborapp.util.ApiUtil;
 
 import java.io.DataOutputStream;
 import java.net.HttpURLConnection;
@@ -42,16 +26,24 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import tz.co.nezatech.neighborapp.adapter.GroupAdapter;
+import tz.co.nezatech.neighborapp.call.SendPanicActivity;
+import tz.co.nezatech.neighborapp.group.ManageGroupActivity;
+import tz.co.nezatech.neighborapp.group.NewGroupActivity;
+import tz.co.nezatech.neighborapp.model.Group;
+import tz.co.nezatech.neighborapp.pref.UserPreference;
+import tz.co.nezatech.neighborapp.service.ShakeService;
+import tz.co.nezatech.neighborapp.signup.ProfileInfoActivity;
+import tz.co.nezatech.neighborapp.signup.Response;
+import tz.co.nezatech.neighborapp.signup.WelcomeActivity;
+import tz.co.nezatech.neighborapp.util.ApiUtil;
+
 public class MainActivity extends AppCompatActivity {
     public static final String FETCH_GROUPS_URL = ApiUtil.BASE_URL + "/groups/members/";
     public static final String FETCH_SEND_PANIC_URL = ApiUtil.BASE_URL + "/panic";
     public static final String DATA_SELECTED_GROUP = "SelectedGroup";
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final int MY_PERMISSIONS_REQUEST_OUTGOING_CALLS = 100;
-    private SensorManager mSensorManager;
-    private Sensor mAccelerometer;
-    private ShakeDetector mShakeDetector;
-    FloatingActionButton fab;
+    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,71 +56,34 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                call(-1);
+                call();
             }
         });
 
         init();
         fetchGroups();
-        permissionBgAlert();
+        startBgShakeService();
     }
 
-    private void permissionBgAlert() {
-        //android.permission.PROCESS_OUTGOING_CALLS
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.PROCESS_OUTGOING_CALLS)
-                != PackageManager.PERMISSION_GRANTED) {
-            // Permission is not granted
-            // Should we show an explanation?
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.PROCESS_OUTGOING_CALLS)) {
-                Log.d(TAG, "Show explanations");
-            } else {
-                // No explanation needed; request the permission
-                ActivityCompat.requestPermissions(this,
-                        new String[]{Manifest.permission.PROCESS_OUTGOING_CALLS},
-                        MY_PERMISSIONS_REQUEST_OUTGOING_CALLS);
-                Log.d(TAG, "Permissions granted");
-            }
+    @Override
+    protected void onStop() {
+        try {
+            super.onStop();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
         }
     }
 
-    boolean callLocked = false;
-
-    private synchronized void call(int counter) {
-        if (callLocked) {
-            Log.d(TAG, "Call: Locked -> " + counter);
-            mShakeDetector.resetCounter();
-            return;
-        }
-        Log.d(TAG, "Call: Making new alert call");
-        callLocked = true;
-
-        UserPreference p = new UserPreference(this);
-        final String msisdn = p.getString(UserPreference.USER_MSISDN);
-        if (msisdn != null) {
-            new AlertDialog.Builder(this)
-                    .setTitle("Panic Alert")
-                    .setMessage(R.string.alert_panic_text)
-                    .setIcon(R.drawable.ic_alert_warnig_48)
-                    .setPositiveButton(R.string.send_alert_positive_text, new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            switch (whichButton) {
-                                case AlertDialog.BUTTON_POSITIVE: {
-                                    new MakeCallTask(msisdn).execute();
-                                }
-                                break;
-                                default: {
-                                }
-                            }
-                        }
-                    })
-                    .setNegativeButton(android.R.string.no, null).show();
-        } else {
-            Log.e(TAG, "Call: No call is made as there is no msisdn: " + msisdn);
-        }
+    private void startBgShakeService() {
+        Intent intent = new Intent(this, ShakeService.class);
+        startService(intent);
     }
 
+    private synchronized void call(){
+        Intent intent = new Intent(this, SendPanicActivity.class);
+        intent.putExtra(ShakeService.SHOW_ALERT_DIALOG, true);
+        getApplication().startActivity(intent);
+    }
     private void fetchGroups() {
         UserPreference p = new UserPreference(this);
         String msisdn = p.getString(UserPreference.USER_MSISDN);
@@ -141,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
     List<Group> groups = new ArrayList<>();
     GroupAdapter customAdapter;
     SwipeRefreshLayout swipeContainer;
-    TelecomManager telecomService;
 
     private void init() {
         UserPreference p = new UserPreference(this);
@@ -149,8 +103,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, WelcomeActivity.class);
             startActivity(intent);
         }
-
-        telecomService = (TelecomManager) getApplication().getSystemService(Context.TELECOM_SERVICE);
 
         TextView empty = findViewById(R.id.empty);
         empty.setText(R.string.txt_empty_groups);
@@ -178,46 +130,23 @@ public class MainActivity extends AppCompatActivity {
 
         customAdapter = new GroupAdapter(this, R.layout.contacts_list_item, groups);
         groupList.setAdapter(customAdapter);
-
-
-        // ShakeDetector initialization
-        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        mAccelerometer = mSensorManager
-                .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        mShakeDetector = new ShakeDetector();
-        mShakeDetector.setOnShakeListener(new ShakeDetector.OnShakeListener() {
-
-            @Override
-            public void onShake(int count) {
-                if(count<=3){
-                    Toast.makeText(MainActivity.this, "Shaken, count: "+count, Toast.LENGTH_LONG).show();
-                }
-                if (count == 3) {
-                    call(count);
-                } else {
-                    Log.d(TAG, "Shake: No eligible call as count is at " + count);
-                }
-            }
-        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mSensorManager.registerListener(mShakeDetector, mAccelerometer, SensorManager.SENSOR_DELAY_UI);
     }
 
 
     @Override
     public void onPause() {
-        mSensorManager.unregisterListener(mShakeDetector);
         super.onPause();
     }
 
     private void updateGroupList(Response response) {
         groups = response.getGroups();
-        if(groups==null){
-            groups=new ArrayList<>();
+        if (groups == null) {
+            groups = new ArrayList<>();
         }
         init();
     }
@@ -328,8 +257,6 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(response);
             progressBar.setVisibility(View.INVISIBLE);
             swipeContainer.setRefreshing(false);
-            mShakeDetector.resetCounter();
-            callLocked = false;
             if (response.getStatus() == 0) {
                 Snackbar.make(progressBar, response.getMessage(), Snackbar.LENGTH_LONG)
                         .setAction("Success", null).show();
